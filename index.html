@@ -1,0 +1,2674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StaySmart | Luxury Hotel Booking</title>
+
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    >
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --primary: #12372a;
+            --primary-light: #1f5c46;
+            --gold: #c79a4a;
+            --gold-light: #f5ead5;
+            --cream: #faf8f3;
+            --dark: #17211c;
+            --text: #56615b;
+            --white: #ffffff;
+            --border: #e8e4dc;
+            --shadow: 0 12px 35px rgba(23, 33, 28, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--cream);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: "Playfair Display", serif;
+            color: var(--dark);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background: rgba(18, 55, 42, 0.97);
+            padding: 16px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .brand-dot {
+            color: var(--gold);
+        }
+
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.78) !important;
+            margin: 0 5px;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn-nav {
+            background: var(--gold);
+            color: white;
+            border-radius: 8px;
+            padding: 10px 20px;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn-nav:hover {
+            background: #b88637;
+            color: white;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(9, 29, 21, 0.88),
+                    rgba(9, 29, 21, 0.45)
+                ),
+                url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=2000&q=90")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 720px;
+            color: white;
+        }
+
+        .hero-label {
+            display: inline-block;
+            color: #f5d898;
+            border: 1px solid rgba(245,216,152,0.5);
+            padding: 8px 17px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: clamp(45px, 6vw, 78px);
+            line-height: 1.05;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #e1bb70;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.82);
+            font-size: 18px;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-gold:hover {
+            background: #b88637;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-transparent {
+            border: 1px solid rgba(255,255,255,0.6);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            margin-left: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-transparent:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-wrapper {
+            margin-top: -55px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .search-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+        }
+
+        .search-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            color: #78827d;
+            margin-bottom: 6px;
+        }
+
+        .search-box .form-control,
+        .search-box .form-select {
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: 8px;
+            color: var(--dark);
+        }
+
+        .search-box .form-control:focus,
+        .search-box .form-select:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(199,154,74,0.12);
+        }
+
+        /* ================= SECTIONS ================= */
+
+        .section {
+            padding: 90px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            max-width: 700px;
+            margin: auto;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            color: var(--gold);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 44px;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            line-height: 1.8;
+        }
+
+        /* ================= HOTEL CARDS ================= */
+
+        .hotel-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 100%;
+            border: 1px solid #eee;
+            box-shadow: var(--shadow);
+            transition: 0.35s ease;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(18,55,42,0.13);
+        }
+
+        .hotel-image {
+            height: 240px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hotel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .hotel-card:hover .hotel-image img {
+            transform: scale(1.06);
+        }
+
+        .rating {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: white;
+            color: var(--dark);
+            padding: 7px 11px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .rating i {
+            color: var(--gold);
+        }
+
+        .hotel-price {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 8px 13px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        .hotel-content {
+            padding: 23px;
+        }
+
+        .hotel-location {
+            font-size: 13px;
+            color: #89918c;
+            margin-bottom: 8px;
+        }
+
+        .hotel-location i {
+            color: var(--gold);
+        }
+
+        .hotel-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hotel-content p {
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .hotel-features {
+            border-top: 1px solid var(--border);
+            padding-top: 15px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hotel-features span {
+            font-size: 12px;
+            color: #6d7771;
+        }
+
+        .hotel-features i {
+            color: var(--gold);
+            margin-right: 4px;
+        }
+
+        /* ================= ROOM SECTION ================= */
+
+        .rooms-section {
+            background: white;
+        }
+
+        .room-card {
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: white;
+            transition: 0.3s;
+            height: 100%;
+        }
+
+        .room-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+        }
+
+        .room-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .room-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .room-content {
+            padding: 22px;
+        }
+
+        .room-content h3 {
+            font-size: 24px;
+        }
+
+        .room-info {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 15px 0;
+            font-size: 13px;
+        }
+
+        .room-info i {
+            color: var(--gold);
+            margin-right: 5px;
+        }
+
+        .room-price {
+            color: var(--primary);
+            font-size: 21px;
+            font-weight: 700;
+        }
+
+        .room-price small {
+            color: #89918c;
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        /* ================= FEATURES ================= */
+
+        .feature-card {
+            background: white;
+            padding: 35px 25px;
+            text-align: center;
+            height: 100%;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            margin: auto auto 20px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .feature-card h4 {
+            font-size: 22px;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ================= ABOUT ================= */
+
+        .about-image {
+            height: 500px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            padding: 30px;
+        }
+
+        .about-content h2 {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            line-height: 1.9;
+            margin-bottom: 18px;
+        }
+
+        .about-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-list li {
+            margin-bottom: 13px;
+            font-weight: 500;
+        }
+
+        .about-list i {
+            color: var(--gold);
+            margin-right: 10px;
+        }
+
+        /* ================= TESTIMONIAL ================= */
+
+        .testimonial-section {
+            background: var(--primary);
+            color: white;
+        }
+
+        .testimonial-section h2 {
+            color: white;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .stars {
+            color: #e4bb6b;
+            margin-bottom: 18px;
+        }
+
+        .testimonial-card p {
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        .user-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 13px;
+        }
+
+        .user-info h6 {
+            color: white;
+            margin: 0;
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .user-info small {
+            color: #9faea6;
+        }
+
+        /* ================= BOOKING ================= */
+
+        .booking-section {
+            padding: 90px 0;
+        }
+
+        .booking-card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .booking-card h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .booking-card .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .booking-card .form-control,
+        .booking-card .form-select {
+            padding: 12px;
+            border: 1px solid var(--border);
+        }
+
+        /* ================= CONTACT ================= */
+
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold-light);
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #0d2b20;
+            color: #9eaaa4;
+            padding: 65px 0 25px;
+        }
+
+        footer h4 {
+            color: white;
+            font-family: "Playfair Display", serif;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #aeb9b3;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            font-size: 13px;
+        }
+
+        /* ================= MODAL ================= */
+
+        .modal-content {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: var(--primary);
+            color: white;
+        }
+
+        .modal-header .modal-title {
+            color: white;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 991px) {
+
+            .navbar-nav {
+                padding-top: 15px;
+            }
+
+            .hero {
+                min-height: 600px;
+            }
+
+            .section-title h2 {
+                font-size: 36px;
+            }
+
+            .about-image {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero h1 {
+                font-size: 46px;
+            }
+
+            .hero-buttons .btn-transparent {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .search-wrapper {
+                margin-top: -35px;
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .about-content {
+                padding: 30px 0;
+            }
+
+            .about-content h2 {
+                font-size: 36px;
+            }
+
+            .booking-card {
+                padding: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="#home">
+            <i class="fa-solid fa-hotel me-2"></i>
+            Stay<span class="brand-dot">Smart</span>
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMenu"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#home">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#hotels">Hotels</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#rooms">Rooms</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+                    <a class="btn btn-nav" href="#booking">
+                        Book Now
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero" id="home">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <span class="hero-label">
+                Luxury stays. Beautiful memories.
+            </span>
+
+            <h1>
+                Find Your
+                <span>Perfect Stay</span>
+            </h1>
+
+            <p>
+                Discover premium hotels, beautiful resorts and comfortable
+                rooms in the world's most inspiring destinations.
+                Book your next stay with confidence.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#hotels" class="btn btn-gold">
+                    Explore Hotels
+                    <i class="fa-solid fa-arrow-right ms-2"></i>
+                </a>
+
+                <a href="#about" class="btn btn-transparent">
+                    Discover StaySmart
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SEARCH
+========================================================= -->
+
+<div class="container search-wrapper">
+
+    <div class="search-box">
+
+        <form id="searchForm">
+
+            <div class="row g-3 align-items-end">
+
+                <div class="col-lg-3 col-md-6">
+
+                    <label class="search-label">
+                        Destination
+                    </label>
+
+                    <select class="form-select" id="destination">
+
+                        <option value="">All destinations</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Dubai">Dubai</option>
+                        <option value="Paris">Paris</option>
+                        <option value="Bali">Bali</option>
+                        <option value="Tokyo">Tokyo</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+
+                    <label class="search-label">
+                        Check-in
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="checkin"
+                    >
+
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+
+                    <label class="search-label">
+                        Check-out
+                    </label>
+
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="checkout"
+                    >
+
+                </div>
+
+                <div class="col-lg-2 col-md-6">
+
+                    <label class="search-label">
+                        Guests
+                    </label>
+
+                    <select class="form-select" id="guests">
+
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                        <option>5+ Guests</option>
+
+                    </select>
+
+                </div>
+
+                <div class="col-lg-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-gold w-100 py-3"
+                    >
+                        <i class="fa-solid fa-magnifying-glass me-2"></i>
+                        Search Hotels
+                    </button>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     FEATURED HOTELS
+========================================================= -->
+
+<section class="section" id="hotels">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                Handpicked stays
+            </div>
+
+            <h2>
+                Featured Hotels
+            </h2>
+
+            <p>
+                Explore carefully selected hotels offering exceptional
+                hospitality, beautiful surroundings and memorable experiences.
+            </p>
+
+        </div>
+
+        <div class="row g-4" id="hotelContainer">
+
+
+            <!-- HOTEL 1 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Maldives">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1000&q=85"
+                            alt="Maldives luxury resort"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.9
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹18,500 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Maldives
+                        </div>
+
+                        <h3>
+                            Ocean Pearl Resort
+                        </h3>
+
+                        <p>
+                            A peaceful luxury resort surrounded by crystal-clear
+                            water, private villas and unforgettable sunsets.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                                Free Wi-Fi
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-water-ladder"></i>
+                                Pool
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-utensils"></i>
+                                Restaurant
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Ocean Pearl Resort')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 2 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Dubai">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1000&q=85"
+                            alt="Dubai luxury hotel"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.8
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹15,900 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Dubai, UAE
+                        </div>
+
+                        <h3>
+                            Royal Palm Dubai
+                        </h3>
+
+                        <p>
+                            Experience modern luxury with elegant rooms,
+                            skyline views and premium hospitality.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                                Free Wi-Fi
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-water-ladder"></i>
+                                Pool
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-spa"></i>
+                                Spa
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Royal Palm Dubai')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 3 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Bali">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=85"
+                            alt="Bali luxury resort"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.7
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹11,500 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Bali, Indonesia
+                        </div>
+
+                        <h3>
+                            Bali Garden Retreat
+                        </h3>
+
+                        <p>
+                            Relax among tropical gardens with peaceful villas,
+                            private pools and traditional Balinese hospitality.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                                Free Wi-Fi
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-leaf"></i>
+                                Garden
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-spa"></i>
+                                Spa
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Bali Garden Retreat')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 4 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Paris">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=85"
+                            alt="Paris hotel"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.8
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹17,200 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Paris, France
+                        </div>
+
+                        <h3>
+                            Maison Parisienne
+                        </h3>
+
+                        <p>
+                            A charming Parisian stay close to iconic landmarks,
+                            cafés and elegant shopping streets.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                                Free Wi-Fi
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-mug-hot"></i>
+                                Breakfast
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-car"></i>
+                                Parking
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Maison Parisienne')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 5 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Tokyo">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1000&q=85"
+                            alt="Tokyo city hotel"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.7
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹13,800 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Tokyo, Japan
+                        </div>
+
+                        <h3>
+                            Sakura Grand Hotel
+                        </h3>
+
+                        <p>
+                            Contemporary Japanese hospitality in the heart
+                            of Tokyo with stylish rooms and city views.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-wifi"></i>
+                                Free Wi-Fi
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-utensils"></i>
+                                Restaurant
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-dumbbell"></i>
+                                Gym
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Sakura Grand Hotel')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- HOTEL 6 -->
+
+            <div class="col-lg-4 col-md-6 hotel-item" data-location="Maldives">
+
+                <div class="hotel-card">
+
+                    <div class="hotel-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1540202404-a2f29016b523?auto=format&fit=crop&w=1000&q=85"
+                            alt="Maldives beach hotel"
+                        >
+
+                        <div class="rating">
+                            <i class="fa-solid fa-star"></i>
+                            4.9
+                        </div>
+
+                        <div class="hotel-price">
+                            ₹21,000 / night
+                        </div>
+
+                    </div>
+
+                    <div class="hotel-content">
+
+                        <div class="hotel-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            Maldives
+                        </div>
+
+                        <h3>
+                            Azure Lagoon Villas
+                        </h3>
+
+                        <p>
+                            Private overwater villas with ocean views,
+                            fine dining and premium island experiences.
+                        </p>
+
+                        <div class="hotel-features">
+
+                            <span>
+                                <i class="fa-solid fa-water"></i>
+                                Ocean View
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-spa"></i>
+                                Spa
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-utensils"></i>
+                                Dining
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="btn btn-gold w-100 mt-4"
+                            onclick="openBooking('Azure Lagoon Villas')"
+                        >
+                            Book This Hotel
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div
+            id="noHotels"
+            class="text-center mt-5"
+            style="display:none;"
+        >
+            <i class="fa-solid fa-hotel fa-2x mb-3"
+               style="color:var(--gold);"></i>
+
+            <h4>No hotels found</h4>
+
+            <p>
+                Try selecting another destination.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ROOMS
+========================================================= -->
+
+<section class="section rooms-section" id="rooms">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                Designed for comfort
+            </div>
+
+            <h2>
+                Popular Rooms
+            </h2>
+
+            <p>
+                Choose from comfortable rooms and luxurious suites
+                designed for relaxing stays.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <!-- ROOM 1 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="room-card">
+
+                    <div class="room-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1000&q=85"
+                            alt="Deluxe hotel room"
+                        >
+
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Deluxe Room
+                        </h3>
+
+                        <div class="room-info">
+
+                            <span>
+                                <i class="fa-solid fa-user-group"></i>
+                                2 Guests
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-bed"></i>
+                                King Bed
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-maximize"></i>
+                                35 m²
+                            </span>
+
+                        </div>
+
+                        <div class="room-price">
+                            ₹8,500
+                            <small>/ night</small>
+                        </div>
+
+                        <button
+                            class="btn btn-outline-dark w-100 mt-3"
+                            onclick="openBooking('Deluxe Room')"
+                        >
+                            Reserve Room
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROOM 2 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="room-card">
+
+                    <div class="room-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=85"
+                            alt="Luxury hotel suite"
+                        >
+
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Executive Suite
+                        </h3>
+
+                        <div class="room-info">
+
+                            <span>
+                                <i class="fa-solid fa-user-group"></i>
+                                3 Guests
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-bed"></i>
+                                King Bed
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-maximize"></i>
+                                55 m²
+                            </span>
+
+                        </div>
+
+                        <div class="room-price">
+                            ₹12,500
+                            <small>/ night</small>
+                        </div>
+
+                        <button
+                            class="btn btn-outline-dark w-100 mt-3"
+                            onclick="openBooking('Executive Suite')"
+                        >
+                            Reserve Room
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ROOM 3 -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="room-card">
+
+                    <div class="room-image">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1000&q=85"
+                            alt="Presidential hotel suite"
+                        >
+
+                    </div>
+
+                    <div class="room-content">
+
+                        <h3>
+                            Presidential Suite
+                        </h3>
+
+                        <div class="room-info">
+
+                            <span>
+                                <i class="fa-solid fa-user-group"></i>
+                                4 Guests
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-bed"></i>
+                                King Bed
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-maximize"></i>
+                                90 m²
+                            </span>
+
+                        </div>
+
+                        <div class="room-price">
+                            ₹22,000
+                            <small>/ night</small>
+                        </div>
+
+                        <button
+                            class="btn btn-outline-dark w-100 mt-3"
+                            onclick="openBooking('Presidential Suite')"
+                        >
+                            Reserve Room
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WHY CHOOSE US
+========================================================= -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                The StaySmart advantage
+            </div>
+
+            <h2>
+                Why Choose StaySmart?
+            </h2>
+
+            <p>
+                We make hotel discovery and booking simple,
+                transparent and enjoyable.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <h4>
+                        Secure Booking
+                    </h4>
+
+                    <p>
+                        Your booking information is handled with
+                        a secure and reliable booking experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+
+                    <h4>
+                        Best Value
+                    </h4>
+
+                    <p>
+                        Discover carefully selected hotels with
+                        competitive prices and premium facilities.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+
+                    <h4>
+                        Guest Support
+                    </h4>
+
+                    <p>
+                        Our platform is designed to make your
+                        hotel booking journey easy and convenient.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="section" id="about">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-lg-6">
+
+                <div class="about-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=85"
+                        alt="Luxury hotel swimming pool"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="about-content">
+
+                    <div class="section-label">
+                        About StaySmart
+                    </div>
+
+                    <h2>
+                        Travel beautifully.
+                        Stay comfortably.
+                    </h2>
+
+                    <p>
+                        StaySmart is a modern hotel booking platform
+                        designed to help travelers discover beautiful
+                        accommodations around the world.
+                    </p>
+
+                    <p>
+                        From peaceful island resorts to stylish city hotels,
+                        our platform brings destinations, rooms and booking
+                        information together in one simple experience.
+                    </p>
+
+                    <ul class="about-list">
+
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Carefully selected accommodations
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Simple and convenient booking
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Transparent pricing
+                        </li>
+
+                        <li>
+                            <i class="fa-solid fa-circle-check"></i>
+                            Mobile-friendly experience
+                        </li>
+
+                    </ul>
+
+                    <a href="#booking" class="btn btn-gold mt-3">
+                        Start Your Booking
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     TESTIMONIALS
+========================================================= -->
+
+<section class="section testimonial-section">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                Guest experiences
+            </div>
+
+            <h2>
+                What Our Travelers Say
+            </h2>
+
+            <p style="color:rgba(255,255,255,0.65);">
+                Experiences from travelers who discovered
+                their perfect stay with StaySmart.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The booking process was incredibly simple.
+                        The hotel was exactly like the pictures and
+                        the overall experience was wonderful."
+                    </p>
+
+                    <div class="user-info">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80"
+                            alt="Guest"
+                        >
+
+                        <div>
+
+                            <h6>
+                                Sophia Martinez
+                            </h6>
+
+                            <small>
+                                Verified Traveler
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "I found a beautiful resort for my vacation
+                        within minutes. The hotel information was clear
+                        and easy to understand."
+                    </p>
+
+                    <div class="user-info">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+                            alt="Guest"
+                        >
+
+                        <div>
+
+                            <h6>
+                                Daniel Wilson
+                            </h6>
+
+                            <small>
+                                Verified Traveler
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-lg-4">
+
+                <div class="testimonial-card">
+
+                    <div class="stars">
+                        ★★★★★
+                    </div>
+
+                    <p>
+                        "The design is clean and professional.
+                        Finding a room for our family trip was
+                        quick and stress-free."
+                    </p>
+
+                    <div class="user-info">
+
+                        <img
+                            src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=200&q=80"
+                            alt="Guest"
+                        >
+
+                        <div>
+
+                            <h6>
+                                Emma Johnson
+                            </h6>
+
+                            <small>
+                                Verified Traveler
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     BOOKING
+========================================================= -->
+
+<section class="booking-section" id="booking">
+
+    <div class="container">
+
+        <div class="booking-card">
+
+            <div class="row align-items-center g-4">
+
+                <div class="col-lg-5">
+
+                    <div class="section-label">
+                        Reserve your stay
+                    </div>
+
+                    <h2>
+                        Ready for your next getaway?
+                    </h2>
+
+                    <p>
+                        Complete the form and submit your booking request.
+                        Your reservation details will be displayed instantly.
+                    </p>
+
+                    <div class="mt-4">
+
+                        <p>
+                            <i class="fa-solid fa-check text-warning me-2"></i>
+                            Easy booking
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-check text-warning me-2"></i>
+                            Flexible options
+                        </p>
+
+                        <p>
+                            <i class="fa-solid fa-check text-warning me-2"></i>
+                            Professional experience
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-7">
+
+                    <form id="bookingForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Full Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="customerName"
+                                    class="form-control"
+                                    placeholder="Enter your name"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Email
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="customerEmail"
+                                    class="form-control"
+                                    placeholder="Enter your email"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Hotel / Room
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="bookingHotel"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select accommodation
+                                    </option>
+
+                                    <option>
+                                        Ocean Pearl Resort
+                                    </option>
+
+                                    <option>
+                                        Royal Palm Dubai
+                                    </option>
+
+                                    <option>
+                                        Bali Garden Retreat
+                                    </option>
+
+                                    <option>
+                                        Maison Parisienne
+                                    </option>
+
+                                    <option>
+                                        Sakura Grand Hotel
+                                    </option>
+
+                                    <option>
+                                        Azure Lagoon Villas
+                                    </option>
+
+                                    <option>
+                                        Deluxe Room
+                                    </option>
+
+                                    <option>
+                                        Executive Suite
+                                    </option>
+
+                                    <option>
+                                        Presidential Suite
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Guests
+                                </label>
+
+                                <select
+                                    class="form-select"
+                                    id="bookingGuests"
+                                >
+
+                                    <option>1 Guest</option>
+                                    <option selected>2 Guests</option>
+                                    <option>3 Guests</option>
+                                    <option>4 Guests</option>
+                                    <option>5+ Guests</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Check-in
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="bookingCheckin"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Check-out
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="bookingCheckout"
+                                    class="form-control"
+                                    required
+                                >
+
+                            </div>
+
+                            <div class="col-12">
+
+                                <button
+                                    type="submit"
+                                    class="btn btn-gold w-100 py-3"
+                                >
+                                    <i class="fa-solid fa-calendar-check me-2"></i>
+                                    Confirm Booking Request
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section class="section" id="contact">
+
+    <div class="container">
+
+        <div class="section-title">
+
+            <div class="section-label">
+                Get in touch
+            </div>
+
+            <h2>
+                Contact StaySmart
+            </h2>
+
+            <p>
+                Have a question about a hotel or booking?
+                We are here to help.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+
+                    <h5>
+                        Our Office
+                    </h5>
+
+                    <p>
+                        Chennai, Tamil Nadu, India
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+
+                    <h5>
+                        Email
+                    </h5>
+
+                    <p>
+                        support@staysmart.example
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <div class="contact-card">
+
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+
+                    <h5>
+                        Phone
+                    </h5>
+
+                    <p>
+                        +91 98765 43210
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="row g-5">
+
+            <div class="col-lg-5">
+
+                <h4>
+                    <i class="fa-solid fa-hotel me-2"></i>
+                    StaySmart
+                </h4>
+
+                <p>
+                    A modern hotel booking platform designed to help
+                    travelers discover beautiful destinations and
+                    comfortable stays.
+                </p>
+
+            </div>
+
+            <div class="col-md-3 col-lg-2">
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="#home">Home</a>
+                <a href="#hotels">Hotels</a>
+                <a href="#rooms">Rooms</a>
+                <a href="#about">About</a>
+
+            </div>
+
+            <div class="col-md-3 col-lg-2">
+
+                <h4>
+                    Services
+                </h4>
+
+                <a href="#booking">Hotel Booking</a>
+                <a href="#rooms">Room Selection</a>
+                <a href="#contact">Support</a>
+
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+
+                <h4>
+                    Follow Us
+                </h4>
+
+                <div class="d-flex gap-3">
+
+                    <a href="#" title="Facebook">
+                        <i class="fa-brands fa-facebook fa-lg"></i>
+                    </a>
+
+                    <a href="#" title="Instagram">
+                        <i class="fa-brands fa-instagram fa-lg"></i>
+                    </a>
+
+                    <a href="#" title="Twitter">
+                        <i class="fa-brands fa-x-twitter fa-lg"></i>
+                    </a>
+
+                    <a href="#" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin fa-lg"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom text-center">
+
+            © 2026 StaySmart. All Rights Reserved.
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     BOOKING SUCCESS MODAL
+========================================================= -->
+
+<div
+    class="modal fade"
+    id="successModal"
+    tabindex="-1"
+>
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    <i class="fa-solid fa-circle-check me-2"></i>
+                    Booking Request Received
+                </h5>
+
+                <button
+                    type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="modal"
+                ></button>
+
+            </div>
+
+            <div class="modal-body p-4 text-center">
+
+                <div
+                    class="mb-3"
+                    style="font-size:55px;color:#c79a4a;"
+                >
+                    <i class="fa-solid fa-hotel"></i>
+                </div>
+
+                <h4>
+                    Thank You!
+                </h4>
+
+                <p id="successMessage">
+                    Your booking request has been received.
+                </p>
+
+                <button
+                    class="btn btn-gold"
+                    data-bs-dismiss="modal"
+                >
+                    Done
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+    /* =====================================================
+       SET MINIMUM DATE
+    ===================================================== */
+
+    const today = new Date().toISOString().split("T")[0];
+
+    document.getElementById("checkin").min = today;
+    document.getElementById("checkout").min = today;
+
+    document.getElementById("bookingCheckin").min = today;
+    document.getElementById("bookingCheckout").min = today;
+
+
+    /* =====================================================
+       SEARCH HOTELS
+    ===================================================== */
+
+    document
+        .getElementById("searchForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const destination =
+                document.getElementById("destination").value;
+
+            const hotels =
+                document.querySelectorAll(".hotel-item");
+
+            let found = 0;
+
+            hotels.forEach(function(hotel) {
+
+                const location =
+                    hotel.getAttribute("data-location");
+
+                if (
+                    destination === "" ||
+                    location === destination
+                ) {
+
+                    hotel.style.display = "block";
+                    found++;
+
+                } else {
+
+                    hotel.style.display = "none";
+
+                }
+
+            });
+
+            const noHotels =
+                document.getElementById("noHotels");
+
+            if (found === 0) {
+
+                noHotels.style.display = "block";
+
+            } else {
+
+                noHotels.style.display = "none";
+
+            }
+
+            document
+                .getElementById("hotels")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        });
+
+
+    /* =====================================================
+       OPEN BOOKING
+    ===================================================== */
+
+    function openBooking(name) {
+
+        document.getElementById("bookingHotel").value = name;
+
+        document
+            .getElementById("booking")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+    }
+
+
+    /* =====================================================
+       BOOKING FORM
+    ===================================================== */
+
+    document
+        .getElementById("bookingForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("customerName").value;
+
+            const email =
+                document.getElementById("customerEmail").value;
+
+            const hotel =
+                document.getElementById("bookingHotel").value;
+
+            const checkin =
+                document.getElementById("bookingCheckin").value;
+
+            const checkout =
+                document.getElementById("bookingCheckout").value;
+
+            if (checkout <= checkin) {
+
+                alert(
+                    "Check-out date must be after the check-in date."
+                );
+
+                return;
+
+            }
+
+            document.getElementById("successMessage").innerHTML =
+                "Thank you, <strong>" +
+                name +
+                "</strong>! Your booking request for <strong>" +
+                hotel +
+                "</strong> from <strong>" +
+                checkin +
+                "</strong> to <strong>" +
+                checkout +
+                "</strong> has been received.";
+
+            const modal =
+                new bootstrap.Modal(
+                    document.getElementById("successModal")
+                );
+
+            modal.show();
+
+            document.getElementById("bookingForm").reset();
+
+        });
+
+
+    /* =====================================================
+       UPDATE CHECKOUT MINIMUM DATE
+    ===================================================== */
+
+    document
+        .getElementById("bookingCheckin")
+        .addEventListener("change", function() {
+
+            document
+                .getElementById("bookingCheckout")
+                .min = this.value;
+
+        });
+
+
+    document
+        .getElementById("checkin")
+        .addEventListener("change", function() {
+
+            document
+                .getElementById("checkout")
+                .min = this.value;
+
+        });
+
+
+    /* =====================================================
+       NAVBAR ACTIVE LINK
+    ===================================================== */
+
+    const navLinks =
+        document.querySelectorAll(".nav-link");
+
+    navLinks.forEach(function(link) {
+
+        link.addEventListener("click", function() {
+
+            navLinks.forEach(function(item) {
+                item.classList.remove("active");
+            });
+
+            this.classList.add("active");
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>
